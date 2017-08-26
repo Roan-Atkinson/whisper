@@ -1,21 +1,18 @@
 <html>
 	<head>
-		<title>openSource: whisper</title>
+		<title>whisper</title>
 		<link rel="shortcut icon" type="image/png" href="lock.png">
 		<style type="text/css">
-		  a:link {color: black;}
-		  a:visited {color: black;}
-		  a:hover {color: red;}
 		  body {background-color: #000000; text-align: center; color: white; font-family: Courier New;}
 		  h1 {color: #ffffff;}
 		  input {color: black;}
 		  .button {font-size: 20px;}
 		  #messageInput{width: 500px; padding: 3px; font-size: 12px;}
-		  #chat{height: 600px; width: 550px; background-color: #1a1a1a; margin: 0 auto; border-radius: 10px; padding: 20px; text-align: left; overflow: scroll;}
+		  #chat{height: 500px; width: 550px; background-color: #1a1a1a; margin: 0 auto; border-radius: 10px; padding: 20px; text-align: left; overflow: scroll;}
 		</style>
 	</head>
 	<body>
-	  <h1>openSource: whisper</h1>
+	  <h1>whisper</h1>
 	  <div id="chat"></div>
 	  <br>
 	  <form method="post">
@@ -41,10 +38,11 @@ function sendMessage() {
 
    $message = $_POST["message"];
 	if ($message == "\$clear") {
-		exec("echo \">$username cleared the log\" > chat.data");
+		exec("echo \">chat log cleared\" > chat.data");
 		return;
 	} elseif ($message == "\$help") {
-		exec("echo \"<br>>$username asked for help\" >> chat.data");
+		$command = substr($message, 1);
+		exec("echo \"<br>$username: \\$$command\" >> chat.data");
 		exec("echo $(cat help.menu) >> chat.data");
 		return;
 	} elseif ($message[0] == "$") {
