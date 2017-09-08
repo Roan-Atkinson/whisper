@@ -8,7 +8,7 @@
 		  input {color: black;}
 		  .button {font-size: 20px;}
 		  #messageInput{width: 500px; padding: 3px; font-size: 12px;}
-		  #chat{height: 500px; width: 550px; background-color: #1a1a1a; margin: 0 auto; border-radius: 10px; padding: 20px; text-align: left; overflow: scroll;}
+		  #chat{height: 500px; width: 550px; background-color: #1a1a1a; margin: 0 auto; border-radius: 10px; padding: 20px; text-align: left; overflow: hidden;}
 		</style>
 	</head>
 	<body>
@@ -16,7 +16,7 @@
 	  <div id="chat"></div>
 	  <br>
 	  <form method="post">
-		  message:	<input type="text" name="message" id="messageInput" onblur="this.focus()" autofocus>
+		  message:	<input type="text" name="message" id="messageInput" onblur="this.focus()" autocomplete="off" autofocus>
 	     <input type="submit" name="send" value="send"><br><br>
 	  </form>
 
