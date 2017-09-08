@@ -45,6 +45,11 @@ function sendMessage() {
 		exec("echo \"<br>$username: \\$$command\" >> chat.data");
 		exec("echo $(cat help.menu) >> chat.data");
 		return;
+	} elseif ($message == "\$date") {
+		$command = substr($message, 1);
+		exec("echo \"<br>$username: \\$$command\" >> chat.data");
+		exec("echo \"<br>>$(date)\" >> chat.data");
+		return;
 	} elseif ($message[0] == "$") {
 		$command = substr($message, 1);
 		exec("echo \"<br>$username: \\$$command\" >> chat.data");
