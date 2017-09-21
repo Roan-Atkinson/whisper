@@ -10,6 +10,12 @@
 		  #messageInput{width: 500px; padding: 3px; font-size: 12px;}
 		  #chat{height: 500px; width: 550px; background-color: #1a1a1a; margin: 0 auto; border-radius: 10px; padding: 20px; text-align: left; overflow: hidden;}
 		</style>
+		<script>
+			var url = window.location.href.substring(0,window.location.href.length - document.location.search.length);
+			if (url.slice(-1) != "/") {
+				window.location.href = url+"/"+document.location.search;
+			}
+		</script>
 	</head>
 	<body>
 	  <h1>whisper</h1>
