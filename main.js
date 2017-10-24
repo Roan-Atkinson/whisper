@@ -15,14 +15,44 @@ function getData() {
        var chat =  document.getElementById('chat')
        chat.innerHTML = content
        chat.scrollTop = chat.scrollHeight
+     }
+   }
+
+   xmlhttp.open("GET", "chat.dat", true);
+   xmlhttp.send();
+
+}
+
+
+function detectChange() {
+
+   var xmlhttp;
+
+   if (window.XMLHttpRequest) {
+     xmlhttp = new XMLHttpRequest();
+   }
+   else {
+     xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+   }
+
+   xmlhttp.onreadystatechange = function () {
+     if (xmlhttp.readyState == 4) {
+       console.log("md5 requested");
+       var chatMD5 = xmlhttp.responseText;
+       var prevMD5 = window.localStorage.chatMD5;
+       if (chatMD5 != prevMD5) {
+          window.localStorage.chatMD5 = chatMD5;
+          getData();
+       }
        setTimeout(function() {
-          getData()
+          detectChange();
        },100)
      }
    }
 
-   xmlhttp.open("GET", "chat.data", true);
+   xmlhttp.open("GET", "chat.md5", true);
    xmlhttp.send();
+
 }
 
 
@@ -50,4 +80,4 @@ if (!params.user || params.user == '' || params.user == null) {
    url = url + "?user=" + username;
    window.location = url;
 }
-getData();
+detectChange();

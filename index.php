@@ -38,32 +38,44 @@
 
 <?php
 
+function updateHash() {
+
+	$chatMD5 = md5_file("chat.dat");
+	exec("echo \"$chatMD5\" > chat.md5");
+
+}
+
 function sendMessage() {
 
 	$username = $_GET['user'];
 
    $message = $_POST["message"];
 	if ($message == "\$clear") {
-		exec("echo \">chat log cleared\" > chat.data");
+		exec("echo \">chat log cleared\" > chat.dat");
+		updateHash();
 		return;
 	} elseif ($message == "\$help") {
 		$command = substr($message, 1);
-		exec("echo \"<br>$username: \\$$command\" >> chat.data");
-		exec("echo $(cat help.menu) >> chat.data");
+		exec("echo \"<br>$username: \\$$command\" >> chat.dat");
+		exec("echo $(cat help.menu) >> chat.dat");
+		updateHash();
 		return;
 	} elseif ($message == "\$date") {
 		$command = substr($message, 1);
-		exec("echo \"<br>$username: \\$$command\" >> chat.data");
-		exec("echo \"<br>>$(date)\" >> chat.data");
+		exec("echo \"<br>$username: \\$$command\" >> chat.dat");
+		exec("echo \"<br>>$(date)\" >> chat.dat");
+		updateHash();
 		return;
 	} elseif ($message[0] == "$") {
 		$command = substr($message, 1);
-		exec("echo \"<br>$username: \\$$command\" >> chat.data");
-		exec("echo \"<br>\\$$command: command not found\" >> chat.data");
+		exec("echo \"<br>$username: \\$$command\" >> chat.dat");
+		exec("echo \"<br>\\$$command: command not found\" >> chat.dat");
+		updateHash();
 		return;
 	}
 
-	exec("echo \"<br>$username: $message\" >> chat.data");
+	exec("echo \"<br>$username: $message\" >> chat.dat");
+	updateHash();
 
 }
 
