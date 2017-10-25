@@ -80,4 +80,5 @@ if (!params.user || params.user == '' || params.user == null) {
    url = url + "?user=" + username;
    window.location = url;
 }
+getData();
 detectChange();
