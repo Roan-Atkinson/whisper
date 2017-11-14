@@ -49,7 +49,7 @@ function sendMessage() {
 
 	$username = $_GET['user'];
 
-   $message = $_POST["message"];
+   $message = htmlentities($_POST["message"]);
 	if ($message == "\$clear") {
 		exec("echo \">chat log cleared\" > chat.dat");
 		updateHash();
